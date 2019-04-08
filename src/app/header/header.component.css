@@ -1,0 +1,17 @@
+header {
+  height: 60px;
+  background: #00c22c;
+}
+
+nav {
+  background: #00c22c;
+}
+
+.navbar {
+  padding: 0.3rem !important;
+}
+
+.navbar-brand {
+  font-size: 1.8rem !important;
+  text-transform: capitalize !important;
+}
