@@ -1,0 +1,19 @@
+<div class="form-bg h-100">
+  <div class="form">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <h2>{{ isLogin ? 'Sign In' : 'Sign Up'}}</h2>
+      <div class="input-box">
+        <i class="fa fa-user"></i>
+        <input type="text" name="email" id="email" placeholder="Email" ngModel required>
+      </div>
+      <div class="input-box">
+        <i class="fa fa-unlock-alt"></i>
+        <input type="password" name="password" id="password" placeholder="Password" ngModel [minlength]="6" required>
+      </div>
+      <div class="input-box">
+        <button type="submit" [disabled]="!form.valid">{{ isLogin ? 'Login' : 'Sign Up'}}</button>
+      </div>
+      <a (click)="toggleForm()">{{ isLogin ? 'Register ?' : 'Already registered ?'}}</a>
+    </form>
+  </div>
+</div>

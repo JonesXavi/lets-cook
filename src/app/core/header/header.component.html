@@ -1,26 +1,27 @@
 <header>
   <nav class="navbar navbar-expand-lg fixed-top navbar-light">
     <a class="navbar-brand" routerLink="/">
-      <img src="../../assets/img/recipe-icon.png" width="45" height="45" class="d-inline-block align-top" alt="">
+      <img src="../../../assets/img/recipe-icon.png" width="45" height="45" class="d-inline-block align-top" alt="">
       Recipe Book
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="toggleHeader()" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div [ngClass]="!isToggle ? 'collapse navbar-collapse' : 'collapse navbar-collapse show'" #navbarNavDropdown>
+    <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/recipes">Recipes <span class="sr-only">(current)</span></a>
+          <a class="nav-link" (click)="toggleHeader()" routerLink="/recipes">Recipes <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/shopping-list">Shopping List</a>
+          <a class="nav-link" (click)="toggleHeader()" routerLink="/shopping-list">Shopping List</a>
         </li>
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="!authService.isAuthenticated()">
-          <a class="nav-link clickable-cursor" [routerLink]="[ '/signin']">Login</a>
+        <li class="nav-item" *ngIf="!(authState | async).authenticated">
+          <a class="nav-link clickable-cursor" (click)="toggleHeader()" [routerLink]="[ '/signin']">Login</a>
         </li>
-        <ng-template [ngIf]="authService.isAuthenticated()">
+        <ng-template [ngIf]="(authState | async).authenticated">
           <li class="nav-item">
             <a class="nav-link clickable-cursor" (click)="onLogout()">Log Out</a>
           </li>
